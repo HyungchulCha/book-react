@@ -1,7 +1,62 @@
-macOS, Ubuntu
+nvm
+macOS, Ubuntu :
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 nvm --version
 vim ~/.bash_profile
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install --lts
+
+git
+window : bash 추가설치
+Ubuntu : sudo apt-get install git-all
+
+create-react-app
+npx create-react-app myapp
+cd myapp
+npm run start
+
+*import, require
+
+React.StrictMode
+리액트 프로젝트에서 리액트의 레거시 기능들을 사용하지 못하게 하는 기능
+이를 사용하면 문자열 ref, componentWillMount 등 나중에 완전히 사라지게 될 옛날 기능을 사용했을 때 경고를 출력한다.
+
+<Fragment></Fragment> or <></>
+
+let a = 1
+let a = 2 // Uncaught SyntaxError: Identifier 'a' has already been declared.
+
+const a = 1
+a = 2 // Uncaught TypeError: Assignmentㄴ to constant variable.
+
+렌더링 반환값이 undefined면 안 된다.
+
+Prettier
+f1 - "format" 입력 - 자동을 코드정리
+Code(or File) > 기본설정 > 설정 - format on save
+
+*Arrow Function - this
+function BlackDog() {
+  this.name = 'white';
+  return {
+    name: 'black',
+    bark: function() {
+      console.log(this.name + ': bawwow!') // 일반 함수는 자신이 종속된 객체를 this로 가리킨다.
+    }
+  }
+}
+const blackDog = new BlackDog(); // this가 blackDog에 바인딩된다.
+blackDog.bark(); // black: bawwow!
+
+function WhiteDog() {
+  this.name = 'white';
+  return {
+    name: 'black',
+    bark: () => {
+      console.log(this.name + ': bawwow!') // 화살표 함수는 자신이 종속된 인스턴스를 this로 가리킨다.
+    }
+  }
+}
+const whiteDog = new WhiteDog(); // this가 WhiteDog을 가리킨다.
+whiteDog.bark(); // white: bawwow!
