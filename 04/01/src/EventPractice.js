@@ -27,22 +27,30 @@ class EventPractice extends Component {
 
   handleChange = (e) => {
     this.setState({
-      message: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
   handleClick = (e) => {
-    alert(this.state.message);
+    alert(this.state.username + this.state.message);
     this.setState({
+      username: '',
       message: '',
     });
+  };
+
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.handleClick();
+    }
   };
 
   render() {
     return (
       <div>
         <h1>EventPractice</h1>
-        <input type='text' name='message' placeholder='Insert Text' value={this.state.message} onChange={this.handleChange} />
+        <input type='text' name='username' placeholder='Insert Text Username' value={this.state.username} onChange={this.handleChange} />
+        <input type='text' name='message' placeholder='Insert Text Message' value={this.state.message} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
         <button onClick={this.handleClick}>Confirm</button>
       </div>
     );
